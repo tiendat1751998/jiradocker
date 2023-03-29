@@ -1,0 +1,29 @@
+version: '3.4'
+services:
+  confluence:
+    image: haxqer/confluence:7.19.7
+    container_name: confluence-srv
+    environment:
+      - TZ=Asia/Shanghai
+          - JVM_MINIMUM_MEMORY=1g
+          - JVM_MAXIMUM_MEMORY=4g
+         - JVM_CODE_CACHE_ARGS='-XX:InitialCodeCacheSize=1g -XX:ReservedCodeCacheSize=4g'
+    depends_on:
+      - mysql
+    ports:
+      - "8089:8090"
+    volumes:
+      - home_data:/var/confluence
+    restart: always
+    networks:
+      - network-bridge
+
+networks:
+  network-bridge:
+    driver: bridge
+
+volumes:
+  home_data:
+    external: false
+  mysql_data:
+    external: false
