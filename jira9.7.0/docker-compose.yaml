@@ -28,7 +28,7 @@ services:
       - MYSQL_ROOT_PASSWORD=Adm1n123*#
       - MYSQL_USER=jira
       - MYSQL_PASSWORD=Adm1n123*
-    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_bin','--transaction-isolation=READ-COMMITTED', '--innodb_log_file_size=256M', '--max_allowed_packet=256M']
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_bin','--transaction-isolation=READ-COMMITTED', '--innodb_log_file_size=256M', '--max_allowed_packet=256M','--host_cache_size=0 ']
     ports:
      - "3306:3306"
     volumes:
