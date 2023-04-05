@@ -1,15 +1,14 @@
 version: '3.4'
 services:
   confluence:
-    image: haxqer/confluence:7.19.7
+#    haxqer/confluence:7.19.7
+    image: dotiendat1751998/confluence
     container_name: confluence-srv
     environment:
       - TZ=Asia/Shanghai
           - JVM_MINIMUM_MEMORY=1g
           - JVM_MAXIMUM_MEMORY=4g
-         - JVM_CODE_CACHE_ARGS='-XX:InitialCodeCacheSize=1g -XX:ReservedCodeCacheSize=4g'
-    depends_on:
-      - mysql
+         - JVM_CODE_CACHE_ARGS='-XX:InitialCodeCacheSize=1g -XX:ReservedCodeCacheSize=2g'
     ports:
       - "8089:8090"
     volumes:
