@@ -20,7 +20,7 @@ services:
       - network-bridge
 
   postgre:
-    iimage: postgres:9.5-alpine
+    image: postgres:9.5-alpine
       networks:
         - jiranet
       volumes:
