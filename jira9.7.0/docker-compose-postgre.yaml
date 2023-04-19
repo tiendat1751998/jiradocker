@@ -1,0 +1,54 @@
+version: '3.4'
+services:
+  jira:
+    #    haxqer/jira:9.7.0
+    image: dotiendat1751998/jira
+    container_name: jira-srv
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
+      - JVM_MINIMUM_MEMORY=1g
+      - JVM_MAXIMUM_MEMORY=4g
+      - JVM_CODE_CACHE_ARGS='-XX:InitialCodeCacheSize=1g -XX:ReservedCodeCacheSize=2g'
+    depends_on:
+      - postgre
+    ports:
+      - "8808:8080"
+    volumes:
+      - home_data:/var/jira
+    restart: always
+    networks:
+      - network-bridge
+
+  postgre:
+    iimage: postgres:9.5-alpine
+      networks:
+        - jiranet
+      volumes:
+        - postgresqldata:/var/lib/postgresql/data
+      environment:
+        - POSTGRES_USER=jira
+        # CHANGE THE PASSWORD!
+        - POSTGRES_PASSWORD=Adm1n123*#
+        - POSTGRES_DB=jiradb
+        - POSTGRES_ENCODING=UNICODE
+        - POSTGRES_COLLATE=C
+        - POSTGRES_COLLATE_TYPE=C
+      logging:
+        # limit logs retained on host to 25MB
+        driver: "json-file"
+        options:
+          max-size: "500k"
+          max-file: "50"
+    restart: always
+    networks:
+      - network-bridge
+
+networks:
+  network-bridge:
+    driver: bridge
+
+volumes:
+  home_data:
+    external: false
+  mysql_data:
+    external: false
