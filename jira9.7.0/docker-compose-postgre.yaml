@@ -4,13 +4,13 @@ services:
     #    haxqer/jira:9.7.0
     image: dotiendat1751998/jira
     container_name: jira-srv
+    depends_on:
+      - postgre
     environment:
       - TZ=Asia/Ho_Chi_Minh
       - JVM_MINIMUM_MEMORY=1g
       - JVM_MAXIMUM_MEMORY=4g
       - JVM_CODE_CACHE_ARGS='-XX:InitialCodeCacheSize=1g -XX:ReservedCodeCacheSize=2g'
-    depends_on:
-      - postgre
     ports:
       - "8808:8080"
     volumes:
@@ -20,9 +20,8 @@ services:
       - network-bridge
 
   postgre:
-    iimage: postgres:9.5-alpine
-      networks:
-        - jiranet
+    image: postgres:9.5-alpine
+    container_name: jira-postgre
       volumes:
         - postgresqldata:/var/lib/postgresql/data
       environment:
