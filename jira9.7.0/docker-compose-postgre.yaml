@@ -5,7 +5,7 @@ services:
     image: dotiendat1751998/jira
     container_name: jira-srv
     depends_on:
-      - postgre
+      - postgresql
     environment:
       - TZ=Asia/Ho_Chi_Minh
       - JVM_MINIMUM_MEMORY=1g
@@ -19,7 +19,7 @@ services:
     networks:
       - network-bridge
 
-  postgre:
+  postgresql:
     image: postgres:9.5-alpine
     container_name: jira-postgre
       volumes:
