@@ -39,7 +39,7 @@ services:
           max-size: "500k"
           max-file: "50"
       volumes:
-        - postgresqldata:/var/lib/postgresql/data
+        - postgresql_data:/var/lib/postgresql/data
     restart: always
     networks:
       - network-bridge
