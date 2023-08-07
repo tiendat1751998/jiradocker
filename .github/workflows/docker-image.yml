@@ -9,8 +9,6 @@ services:
       - JVM_MINIMUM_MEMORY=1g
       - JVM_MAXIMUM_MEMORY=4g
       - JVM_CODE_CACHE_ARGS='-XX:InitialCodeCacheSize=1g -XX:ReservedCodeCacheSize=2g'
-    depends_on:
-      - mysql
     ports:
       - "8808:8080"
     volumes:
